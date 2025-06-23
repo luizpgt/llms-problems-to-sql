@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+    <head>
+        <title>bee 2613 2613 - Cheap Movies</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <meta content="beecrowd" name="author" />
+        <meta content="beecrowd - SQL - Problem 2613 - Cheap Movies" name="description" />
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://resources.beecrowd.com/repository/default-sql.css" rel="stylesheet" type="text/css" />
+
+        <script>
+            window.onload = function () {
+                window.parent.postMessage(
+                    {
+                        action: "resize",
+                        id: "description-html",
+                        height: document.body.scrollHeight + 10,
+                    },
+                    "*",
+                );
+            };
+        </script>
+
+        <!-- Google Tag Manager -->
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-5TJ9S2X");
+        </script>
+        <!-- End Google Tag Manager -->
+    </head>
+
+    <body>
+        <div class="header">
+            <span>beecrowd <strong>SQL</strong> | 2613 </span>
+            <h1>Cheap Movies</h1>
+            <div>
+                <p>Paulo R. Rodegheri <img alt="BR" src="https://resources.beecrowd.com/gallery/images/flags/br.gif" /> Brasil</p>
+            </div>
+            <strong>Timelimit: 1</strong>
+        </div>
+
+        <div class="problem-sql">
+            <div>
+                <p>In the past the studio has made an event where several movies were on sale, we want to know what movies these were.</p>
+                <p>Your job to help us is to select the ID and name of movies whose price is less than 2.00.</p>
+            </div>
+
+            <div>
+                <h2>Schema</h2>
+                <div>
+                    <table class="tables-model-two">
+                        <caption>
+                            movies
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td class="half-column"><strong>Column</strong></td>
+                                <td class="half-column"><strong>Type</strong></td>
+                            </tr>
+                            <tr>
+                                <td>id (PK)</td>
+                                <td>numeric</td>
+                            </tr>
+                            <tr>
+                                <td>name</td>
+                                <td>varchar</td>
+                            </tr>
+                            <tr>
+                                <td>id_prices (FK)</td>
+                                <td>numeric</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="tables-model-two-inline">
+                        <caption>
+                            prices
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td class="half-column"><strong>Column</strong></td>
+                                <td class="half-column"><strong>Type</strong></td>
+                            </tr>
+                            <tr>
+                                <td>id (PK)</td>
+                                <td>numeric</td>
+                            </tr>
+                            <tr>
+                                <td>categorie</td>
+                                <td>varchar</td>
+                            </tr>
+                            <tr>
+                                <td>value</td>
+                                <td>numeric</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h2>Tables</h2>
+                <div>
+                    <table class="tables-model-two">
+                        <caption>
+                            movies
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td><strong>id</strong></td>
+                                <td><strong>name</strong></td>
+                                <td><strong>id_prices</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="center">1</td>
+                                <td>Batman</td>
+                                <td class="center">3</td>
+                            </tr>
+                            <tr>
+                                <td class="center">2</td>
+                                <td>The Battle of the Dark River</td>
+                                <td class="center">3</td>
+                            </tr>
+                            <tr>
+                                <td class="center">3</td>
+                                <td>White Duck</td>
+                                <td class="center">5</td>
+                            </tr>
+                            <tr>
+                                <td class="center">4</td>
+                                <td>Breaking Barriers</td>
+                                <td class="center">4</td>
+                            </tr>
+                            <tr>
+                                <td class="center">5</td>
+                                <td>The Two Hours</td>
+                                <td class="center">2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="tables-model-two-inline">
+                        <caption>
+                            prices
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td><strong>id</strong></td>
+                                <td><strong>categorie</strong></td>
+                                <td><strong>value</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="center">1</td>
+                                <td>Releases</td>
+                                <td class="center">3.50</td>
+                            </tr>
+                            <tr>
+                                <td class="center">2</td>
+                                <td>Bronze Seal</td>
+                                <td class="center">2.00</td>
+                            </tr>
+                            <tr>
+                                <td class="center">3</td>
+                                <td>Silver Seal</td>
+                                <td class="center">2.50</td>
+                            </tr>
+                            <tr>
+                                <td class="center">4</td>
+                                <td>Gold Seal</td>
+                                <td class="center">3.00</td>
+                            </tr>
+                            <tr>
+                                <td class="center">5</td>
+                                <td>Promotion</td>
+                                <td class="center">1.50</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h2>Output Sample</h2>
+                <div>
+                    <table class="tables-model-two">
+                        <tbody>
+                            <tr>
+                                <td><strong>id</strong></td>
+                                <td><strong>name</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="center">3</td>
+                                <td>White Duck</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <p class="footer"></p>
+        </div>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"952e4fdf4ecda492","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.6.2","token":"516fcb7d46dd40c2885e380045eb7123"}' crossorigin="anonymous"></script>
+</body>
+</html>

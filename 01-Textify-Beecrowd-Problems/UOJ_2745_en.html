@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+    <head>
+        <title>bee 2745 - Taxes</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <meta content="beecrowd" name="author" />
+        <meta content="beecrowd - SQL - Problema 2745 - Taxes" name="description" />
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet" type="text/css" />
+        <link href="https://resources.beecrowd.com/repository/default-sql.css" rel="stylesheet" type="text/css" />
+
+        <script>
+            window.onload = function () {
+                window.parent.postMessage(
+                    {
+                        action: "resize",
+                        id: "description-html",
+                        height: document.body.scrollHeight + 10,
+                    },
+                    "*",
+                );
+            };
+        </script>
+
+        <!-- Google Tag Manager -->
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-5TJ9S2X");
+        </script>
+        <!-- End Google Tag Manager -->
+    </head>
+
+    <body>
+        <div class="header">
+            <span>beecrowd <strong>SQL</strong> | 2745 </span>
+            <h1>Taxes</h1>
+            <div>
+                <p>Marcos Lima <img alt="BR" src="https://resources.beecrowd.com/gallery/images/flags/br.gif" /> Brasil</p>
+            </div>
+            <strong>Timelimit: 1</strong>
+        </div>
+
+        <div class="problem-sql">
+            <div>
+                <p>You are going to the International Personal Tax meeting and your proposal is: every individual with income higher than 3000 must pay a tax to the government, which is 10% of his/her income.</p>
+                <p>Show the name and the tax value of each person who earns more than 3000, with two decimal places of precision.</p>
+                <p></p>
+            </div>
+
+            <div>
+                <h2>Schema</h2>
+                <div>
+                    <table class="tables-fifty">
+                        <caption>
+                            people
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td class="half-column"><strong>Column</strong></td>
+                                <td class="half-column"><strong>Type</strong></td>
+                            </tr>
+                            <tr>
+                                <td>id (PK)</td>
+                                <td>integer</td>
+                            </tr>
+                            <tr>
+                                <td>name</td>
+                                <td>varchar</td>
+                            </tr>
+                            <tr>
+                                <td>salary</td>
+                                <td>numeric</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h2>Tables</h2>
+                <div>
+                    <table class="tables-fifty">
+                        <caption>
+                            people
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td><strong>id</strong></td>
+                                <td><strong>name</strong></td>
+                                <td><strong>salary</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="center">1</td>
+                                <td>James M. Tabarez</td>
+                                <td>883</td>
+                            </tr>
+                            <tr>
+                                <td class="center">2</td>
+                                <td>Rafael T. Hendon</td>
+                                <td>4281</td>
+                            </tr>
+                            <tr>
+                                <td class="center">3</td>
+                                <td>Linda J. Gardner</td>
+                                <td>4437</td>
+                            </tr>
+                            <tr>
+                                <td class="center">4</td>
+                                <td>Nicholas J. Conn</td>
+                                <td>8011</td>
+                            </tr>
+                            <tr>
+                                <td class="center">5</td>
+                                <td>Karol A. Morales</td>
+                                <td>2508</td>
+                            </tr>
+                            <tr>
+                                <td class="center">6</td>
+                                <td>Lolita S. Graves</td>
+                                <td>8709</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h2>Output Sample</h2>
+                <div>
+                    <table class="tables-fifty">
+                        <tbody>
+                            <tr>
+                                <td><strong>name</strong></td>
+                                <td>
+                                    <strong>tax<strong></strong></strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Rafael T. Hendon</td>
+                                <td>428.10</td>
+                            </tr>
+                            <tr>
+                                <td>Linda J. Gardner</td>
+                                <td>443.70</td>
+                            </tr>
+                            <tr>
+                                <td>Nicholas J. Conn</td>
+                                <td>801.10</td>
+                            </tr>
+                            <tr>
+                                <td>Lolita S. Graves</td>
+                                <td>870.90</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <p class="footer"></p>
+        </div>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"952e4fe3ab9aa492","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.6.2","token":"516fcb7d46dd40c2885e380045eb7123"}' crossorigin="anonymous"></script>
+</body>
+</html>

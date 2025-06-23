@@ -1,0 +1,331 @@
+<!doctype html>
+<html>
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <title>bee 2990mployees CPF</title>
+
+        <meta content="beecrowd" name="author" />
+        <meta content="beecrowd - SQL - Problema 2990 - CPF dos empregados" name="description" />
+        <link href="./default.css" rel="stylesheet" type="text/css" />
+        <link href="https://resources.beecrowd.com/repository/default-sql.css" rel="stylesheet" type="text/css" />
+
+        <script>
+            window.onload = function () {
+                window.parent.postMessage(
+                    {
+                        action: "resize",
+                        id: "description-html",
+                        height: document.body.scrollHeight + 10,
+                    },
+                    "*",
+                );
+            };
+        </script>
+
+        <!-- Google Tag Manager -->
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-5TJ9S2X");
+        </script>
+        <!-- End Google Tag Manager -->
+    </head>
+
+    <body>
+        <div class="header">
+            <span>beecrowd <strong>SQL</strong> | 2990 </span>
+            <h1>Employees CPF</h1>
+            <div>
+                <p>Vânia Vidal <img alt="BR" src="https://resources.beecrowd.com/gallery/images/flags/br.gif" /> Brasil</p>
+            </div>
+            <strong>Timelimit: 1</strong>
+        </div>
+
+        <div class="problem-sql">
+            <div>
+                <p>Show the CPF, employees (empregados) name and department (departamentos) name of the employees that don't work (trabalha) in any project (projetos). The result must be order by CPF.</p>
+            </div>
+
+            <div>
+                <h2>Schema</h2>
+                <div>
+                    <table class="tables-model-two">
+                        <caption>
+                            empregados
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td class="half-column"><strong>Column</strong></td>
+                                <td class="half-column"><strong>Type</strong></td>
+                            </tr>
+                            <tr>
+                                <td>cpf (PK)</td>
+                                <td>varchar (15)</td>
+                            </tr>
+                            <tr>
+                                <td>enome</td>
+                                <td>varchar (60)</td>
+                            </tr>
+                            <tr>
+                                <td>salario</td>
+                                <td>float</td>
+                            </tr>
+                            <tr>
+                                <td>cpf_supervisor</td>
+                                <td>varchar (15)</td>
+                            </tr>
+                            <tr>
+                                <td>dnumero</td>
+                                <td>integer)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="tables-model-two">
+                        <caption>
+                            departamentos
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td class="half-column"><strong>Column</strong></td>
+                                <td class="half-column"><strong>Type</strong></td>
+                            </tr>
+                            <tr>
+                                <td>dnumero (PK)</td>
+                                <td>integer</td>
+                            </tr>
+                            <tr>
+                                <td>dnome</td>
+                                <td>varchar (60)</td>
+                            </tr>
+                            <tr>
+                                <td>cpf_gerente (FK)</td>
+                                <td>varchar (15)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="tables-model-two">
+                        <caption>
+                            trabalha
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td class="half-column"><strong>Column</strong></td>
+                                <td class="half-column"><strong>Type</strong></td>
+                            </tr>
+                            <tr>
+                                <td>cpf_emp (FK)</td>
+                                <td>varchar (15)</td>
+                            </tr>
+                            <tr>
+                                <td>pnumero</td>
+                                <td>integer</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="tables-model-two">
+                        <caption>
+                            projetos
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td class="half-column"><strong>Column</strong></td>
+                                <td class="half-column"><strong>Type</strong></td>
+                            </tr>
+                            <tr>
+                                <td>pnumero (PK)</td>
+                                <td>integer</td>
+                            </tr>
+                            <tr>
+                                <td>pnome</td>
+                                <td>varchar (45)</td>
+                            </tr>
+                            <tr>
+                                <td>dnumero (FK)</td>
+                                <td>integer</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h2>Tables</h2>
+                <div>
+                    <table class="tables-model-two-inline">
+                        <caption>
+                            empregados
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td><strong>cpf</strong></td>
+                                <td><strong>enome</strong></td>
+                                <td><strong>salario</strong></td>
+                                <td><strong>cpf_supervisor</strong></td>
+                                <td><strong>dnumero</strong></td>
+                            </tr>
+                            <tr>
+                                <td>049382234322</td>
+                                <td>João Silva</td>
+                                <td class="center">2350</td>
+                                <td>2434332222</td>
+                                <td class="center">1010</td>
+                            </tr>
+                            <tr>
+                                <td>586733922290</td>
+                                <td>Mario Silveira</td>
+                                <td class="center">3500</td>
+                                <td>2434332222</td>
+                                <td class="center">1010</td>
+                            </tr>
+                            <tr>
+                                <td>2434332222</td>
+                                <td>Aline Barros</td>
+                                <td class="center">2350</td>
+                                <td>(null)</td>
+                                <td class="center">1010</td>
+                            </tr>
+                            <tr>
+                                <td>1733332162</td>
+                                <td>Tulio Vidal</td>
+                                <td class="center">8350</td>
+                                <td>(null)</td>
+                                <td class="center">1020</td>
+                            </tr>
+                            <tr>
+                                <td>4244435272</td>
+                                <td>Juliana Rodrigues</td>
+                                <td class="center">3310</td>
+                                <td>(null)</td>
+                                <td class="center">1020</td>
+                            </tr>
+                            <tr>
+                                <td>1014332672</td>
+                                <td>Natalia Marques</td>
+                                <td class="center">2900</td>
+                                <td>(null)</td>
+                                <td class="center">1010</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="tables-model-two-inline">
+                        <caption>
+                            departamentos
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td><strong>dnumero</strong></td>
+                                <td><strong>dnome</strong></td>
+                                <td><strong>cpf_gerente</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="center">1010</td>
+                                <td>Pesquisa</td>
+                                <td>049382234322</td>
+                            </tr>
+                            <tr>
+                                <td class="center">1020</td>
+                                <td>Ensino</td>
+                                <td>2434332222</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="tables-model-two-inline">
+                        <caption>
+                            trabalha
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td><strong>cpf_emp</strong></td>
+                                <td><strong>pnumero</strong></td>
+                            </tr>
+                            <tr>
+                                <td>49382234322</td>
+                                <td class="center">2010</td>
+                            </tr>
+                            <tr>
+                                <td>586733922290</td>
+                                <td class="center">2020</td>
+                            </tr>
+                            <tr>
+                                <td>49382234322</td>
+                                <td class="center">2020</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="tables-model-two-inline">
+                        <caption>
+                            projetos
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td><strong>pnumero</strong></td>
+                                <td><strong>pnome</strong></td>
+                                <td><strong>dnumero</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="center">2010</td>
+                                <td>Alpha</td>
+                                <td class="center">1010</td>
+                            </tr>
+                            <tr>
+                                <td class="center">2020</td>
+                                <td>Beta</td>
+                                <td class="center">1020</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h2>Output Sample</h2>
+                <div>
+                    <table class="tables-model-two">
+                        <tbody>
+                            <tr>
+                                <td><strong>cpf</strong></td>
+                                <td><strong>enome </strong></td>
+                                <td><strong>dnome</strong></td>
+                            </tr>
+                            <tr>
+                                <td>1014332672</td>
+                                <td>Natalia Marques</td>
+                                <td>Pesquisa</td>
+                            </tr>
+                            <tr>
+                                <td>1733332162</td>
+                                <td>Tulio Vidal</td>
+                                <td>Ensino</td>
+                            </tr>
+                            <tr>
+                                <td>2434332222</td>
+                                <td>Aline Barros</td>
+                                <td>Pesquisa</td>
+                            </tr>
+                            <tr>
+                                <td>4244435272</td>
+                                <td>Juliana Rodrigues</td>
+                                <td>Ensino</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <p class="footer"></p>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"9532eaf03a4f1a9e","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.6.2","token":"516fcb7d46dd40c2885e380045eb7123"}' crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!doctype html>
+<html>
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <title>bee 2988 - Cearense Championship</title>
+
+        <meta content="beecrowd" name="author" />
+        <meta content="beecrowd - SQL - Problema 2988 - Cearense Championship" name="description" />
+        <link href="./default.css" rel="stylesheet" type="text/css" />
+        <link href="https://resources.beecrowd.com/repository/default-sql.css" rel="stylesheet" type="text/css" />
+
+        <script>
+            window.onload = function () {
+                window.parent.postMessage(
+                    {
+                        action: "resize",
+                        id: "description-html",
+                        height: document.body.scrollHeight + 10,
+                    },
+                    "*",
+                );
+            };
+        </script>
+
+        <!-- Google Tag Manager -->
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-5TJ9S2X");
+        </script>
+        <!-- End Google Tag Manager -->
+    </head>
+
+    <body>
+        <div class="header">
+            <span>beecrowd <strong>SQL</strong> | 2988 </span>
+            <h1>Cearense Championship</h1>
+            <div>
+                <p>Gustavo Moraes <img alt="BR" src="https://resources.beecrowd.com/gallery/images/flags/br.gif" /> Brasil</p>
+            </div>
+            <strong>Timelimit: 1</strong>
+        </div>
+
+        <div class="problem-sql">
+            <div>
+                <p>The Soccer Cearense Championship attracts thousands of fans every year and you work for a newspaper and are in charge to calculate the score table. Show a table with the following rows: the team name, number of matches, victories, defeats, draws, and scores. Knowing that the score is calculated with each victory valuing 3 points, draw valuing 1 and defeat valuing 0. In the end, show your table with the score from the highest to the lowest.</p>
+            </div>
+
+            <div>
+                <h2>Schema</h2>
+                <div>
+                    <table class="tables-model-two">
+                        <caption>
+                            teams
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td class="half-column"><strong>Column</strong></td>
+                                <td class="half-column"><strong>Type</strong></td>
+                            </tr>
+                            <tr>
+                                <td>id (PK)</td>
+                                <td>integer</td>
+                            </tr>
+                            <tr>
+                                <td>name</td>
+                                <td>varchar (50)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="tables-model-two-inline">
+                        <caption>
+                            matches
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td class="half-column"><strong>Column</strong></td>
+                                <td class="half-column"><strong>Type</strong></td>
+                            </tr>
+                            <tr>
+                                <td>id (PK)</td>
+                                <td>integer</td>
+                            </tr>
+                            <tr>
+                                <td>team_1 (FK)</td>
+                                <td>integer</td>
+                            </tr>
+                            <tr>
+                                <td>team_2 (FK)</td>
+                                <td>integer</td>
+                            </tr>
+                            <tr>
+                                <td>team_1_goals</td>
+                                <td>integer</td>
+                            </tr>
+                            <tr>
+                                <td>team_2_goals</td>
+                                <td>integer</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h2>Tables</h2>
+                <div>
+                    <table class="tables-model-two">
+                        <caption>
+                            teams
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td><strong>id</strong></td>
+                                <td><strong>name</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="center">1</td>
+                                <td>CEARA</td>
+                            </tr>
+                            <tr>
+                                <td class="center">2</td>
+                                <td>FORTALEZA</td>
+                            </tr>
+                            <tr>
+                                <td class="center">3</td>
+                                <td>GUARANY DE SOBRAL</td>
+                            </tr>
+                            <tr>
+                                <td class="center">4</td>
+                                <td>FLORESTA</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="tables-model-two">
+                        <caption>
+                            matches
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td><strong>id</strong></td>
+                                <td><strong>team_1</strong></td>
+                                <td><strong>team_2</strong></td>
+                                <td><strong>team_1_goals</strong></td>
+                                <td><strong>team_2_goals</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="center">1</td>
+                                <td class="center">4</td>
+                                <td class="center">1</td>
+                                <td class="center">0</td>
+                                <td class="center">4</td>
+                            </tr>
+                            <tr>
+                                <td class="center">2</td>
+                                <td class="center">3</td>
+                                <td class="center">2</td>
+                                <td class="center">0</td>
+                                <td class="center">1</td>
+                            </tr>
+                            <tr>
+                                <td class="center">3</td>
+                                <td class="center">1</td>
+                                <td class="center">3</td>
+                                <td class="center">3</td>
+                                <td class="center">0</td>
+                            </tr>
+                            <tr>
+                                <td class="center">4</td>
+                                <td class="center">3</td>
+                                <td class="center">4</td>
+                                <td class="center">0</td>
+                                <td class="center">1</td>
+                            </tr>
+                            <tr>
+                                <td class="center">5</td>
+                                <td class="center">1</td>
+                                <td class="center">2</td>
+                                <td class="center">0</td>
+                                <td class="center">0</td>
+                            </tr>
+                            <tr>
+                                <td class="center">6</td>
+                                <td class="center">2</td>
+                                <td class="center">4</td>
+                                <td class="center">2</td>
+                                <td class="center">1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h2>Output Sample</h2>
+                <div>
+                    <table class="tables-model-two">
+                        <tbody>
+                            <tr>
+                                <td><strong>name</strong></td>
+                                <td><strong>matches</strong></td>
+                                <td><strong>victories</strong></td>
+                                <td><strong>defeats</strong></td>
+                                <td><strong>draws</strong></td>
+                                <td><strong>score</strong></td>
+                            </tr>
+                            <tr>
+                                <td>CEARA</td>
+                                <td class="center">3</td>
+                                <td class="center">2</td>
+                                <td class="center">0</td>
+                                <td class="center">1</td>
+                                <td class="center">7</td>
+                            </tr>
+                            <tr>
+                                <td>FORTALEZA</td>
+                                <td class="center">3</td>
+                                <td class="center">2</td>
+                                <td class="center">0</td>
+                                <td class="center">1</td>
+                                <td class="center">7</td>
+                            </tr>
+                            <tr>
+                                <td>FLORESTA</td>
+                                <td class="center">3</td>
+                                <td class="center">1</td>
+                                <td class="center">2</td>
+                                <td class="center">0</td>
+                                <td class="center">3</td>
+                            </tr>
+                            <tr>
+                                <td>GUARANY DE SOBRAL</td>
+                                <td class="center">3</td>
+                                <td class="center">0</td>
+                                <td class="center">3</td>
+                                <td class="center">0</td>
+                                <td class="center">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <p class="footer"></p>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"952e4ffd6e72a492","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.6.2","token":"516fcb7d46dd40c2885e380045eb7123"}' crossorigin="anonymous"></script>
+</body>
+</html>

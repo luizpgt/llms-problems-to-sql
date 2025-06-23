@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+    <head>
+        <title>bee 2742 - Richard's Multiverse</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <meta content="beecrowd" name="author" />
+        <meta content="beecrowd - SQL - Problema 2742 - Richard's Multiverse" name="description" />
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet" type="text/css" />
+        <link href="https://resources.beecrowd.com/repository/default-sql.css" rel="stylesheet" type="text/css" />
+
+        <script>
+            window.onload = function () {
+                window.parent.postMessage(
+                    {
+                        action: "resize",
+                        id: "description-html",
+                        height: document.body.scrollHeight + 10,
+                    },
+                    "*",
+                );
+            };
+        </script>
+
+        <!-- Google Tag Manager -->
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-5TJ9S2X");
+        </script>
+        <!-- End Google Tag Manager -->
+    </head>
+
+    <body>
+        <div class="header">
+            <span>beecrowd <strong>SQL</strong> | 2742 </span>
+            <h1>Richard's Multiverse</h1>
+            <div>
+                <p>Marcos Lima <img alt="BR" src="https://resources.beecrowd.com/gallery/images/flags/br.gif" /> Brasil</p>
+            </div>
+            <strong>Timelimit: 1</strong>
+        </div>
+
+        <div class="problem-sql">
+            <div>
+                <p>Richard is a famous scientist because of his multiverse theory, where he describes every hypothetical set of parallel universes by means of a database. Thanks to that you now have a job..</p>
+                <p>As your first task, you must select every Richard from dimensions C875 and C774, together with its existence probability (the famous factor N) with three decimal places of precision.</p>
+                <p>Remember that the N factor is calculated by multiplying the <b>omega</b> value by 1,618. The data must be sorted by the least <b>omega</b> value.</p>
+            </div>
+
+            <div>
+                <h2>Schema</h2>
+                <div>
+                    <table class="tables-model-two">
+                        <caption>
+                            dimensions
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td class="half-column"><strong>Column</strong></td>
+                                <td class="half-column"><strong>Type</strong></td>
+                            </tr>
+                            <tr>
+                                <td>id (PK)</td>
+                                <td>numeric</td>
+                            </tr>
+                            <tr>
+                                <td>name</td>
+                                <td>varchar</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="tables-model-two-inline">
+                        <caption>
+                            life_registry
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td class="half-column"><strong>Column</strong></td>
+                                <td class="half-column"><strong>Type</strong></td>
+                            </tr>
+                            <tr>
+                                <td>id (PK)</td>
+                                <td>numeric</td>
+                            </tr>
+                            <tr>
+                                <td>name</td>
+                                <td>varchar</td>
+                            </tr>
+                            <tr>
+                                <td>omega</td>
+                                <td>numeric</td>
+                            </tr>
+                            <tr>
+                                <td>dimensions_id (FK)</td>
+                                <td>numeric</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h2>Tables</h2>
+                <div>
+                    <table class="tables-model-two">
+                        <caption>
+                            dimensions
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td><strong>id</strong></td>
+                                <td><strong>name</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="center">1</td>
+                                <td>C774</td>
+                            </tr>
+                            <tr>
+                                <td class="center">2</td>
+                                <td>C784</td>
+                            </tr>
+                            <tr>
+                                <td class="center">3</td>
+                                <td>C794</td>
+                            </tr>
+                            <tr>
+                                <td class="center">4</td>
+                                <td>C824</td>
+                            </tr>
+                            <tr>
+                                <td class="center">5</td>
+                                <td>C875</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="tables-model-two-inline">
+                        <caption>
+                            life_registry
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td><strong>id</strong></td>
+                                <td><strong>name</strong></td>
+                                <td><strong>omega</strong></td>
+                                <td><strong>dimensions_id</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="center">1</td>
+                                <td>Richard Postman</td>
+                                <td class="center">5.6</td>
+                                <td class="center">2</td>
+                            </tr>
+                            <tr>
+                                <td class="center">2</td>
+                                <td>Simple Jelly</td>
+                                <td class="center">1.4</td>
+                                <td class="center">1</td>
+                            </tr>
+                            <tr>
+                                <td class="center">3</td>
+                                <td>Richard Gran Master</td>
+                                <td class="center">2.5</td>
+                                <td class="center">1</td>
+                            </tr>
+                            <tr>
+                                <td class="center">4</td>
+                                <td>Richard Turing</td>
+                                <td class="center">6.4</td>
+                                <td class="center">4</td>
+                            </tr>
+                            <tr>
+                                <td class="center">5</td>
+                                <td>Richard Strall</td>
+                                <td class="center">1.0</td>
+                                <td class="center">3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h2>Output Sample</h2>
+                <div>
+                    <table class="tables-model-two">
+                        <tbody>
+                            <tr>
+                                <td><strong>name</strong></td>
+                                <td><strong>The N Factor</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Richard Gran Master</td>
+                                <td class="center">4.045</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <p class="footer"></p>
+        </div>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"952e4fec7c11a492","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.6.2","token":"516fcb7d46dd40c2885e380045eb7123"}' crossorigin="anonymous"></script>
+</body>
+</html>
